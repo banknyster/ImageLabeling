@@ -45,6 +45,7 @@ dependencies {
 
     // alert
     implementation 'com.github.d-max:spots-dialog:1.1@aar'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
 
 }
 
