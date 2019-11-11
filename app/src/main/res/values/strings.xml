@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Image Labeling</string>
+    <string name="already_have_an_account_sing_in">Already have an account?, Sing In</string>
+    <string name="singup">SingUp</string>
+    <string name="don_t_have_account_sign_up">Don\'t have account?, sign up</string>
+    <string name="sign_in">Sign In</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
 </resources>

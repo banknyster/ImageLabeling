@@ -2,10 +2,8 @@ package com.example.imagelabeling;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.util.Consumer;
 
 import android.app.AlertDialog;
-import android.drm.ProcessedData;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,11 +11,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.imagelabeling.Helper.FirebaseDatabaseHelper;
 import com.example.imagelabeling.Helper.InternetCheck;
+import com.example.imagelabeling.Helper.Label;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.ml.vision.FirebaseVision;
-import com.google.firebase.ml.vision.cloud.FirebaseVisionCloudDetectorOptions;
 import com.google.firebase.ml.vision.common.FirebaseVisionImage;
 import com.google.firebase.ml.vision.label.FirebaseVisionCloudImageLabelerOptions;
 import com.google.firebase.ml.vision.label.FirebaseVisionImageLabel;
@@ -114,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
                 if(internet){
 
                     FirebaseVisionCloudImageLabelerOptions options = new FirebaseVisionCloudImageLabelerOptions.Builder()
-                              .setConfidenceThreshold(0.7f)
+                              .setConfidenceThreshold(0.8f)
                               .build();
                     FirebaseVisionImageLabeler detector = FirebaseVision.getInstance()
                                .getCloudImageLabeler(options);
@@ -158,17 +157,70 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void ProcessedDataResultCloud(List<FirebaseVisionImageLabel> firebaseVisionCloudLabels) {
+
+
         for(FirebaseVisionImageLabel label : firebaseVisionCloudLabels){
-            Toast.makeText(this, "Cloud result: "+label.getText(), Toast.LENGTH_SHORT).show();
+            Label resultLabel = new Label();
+            Toast.makeText(this, "Cloud result: "+label.getText() + " confidence: " + label.getConfidence(), Toast.LENGTH_SHORT).show();
+            resultLabel.setName(label.getText());
+            resultLabel.setConfidence(label.getConfidence());
+
+            new FirebaseDatabaseHelper().addResult(resultLabel, new FirebaseDatabaseHelper.DataStatus() {
+                @Override
+                public void DataIsLoaded(List<Label> labelList, List<String> keys) {
+
+                }
+
+                @Override
+                public void DataIsInserted() {
+
+                }
+
+                @Override
+                public void DataIsUpated() {
+
+                }
+
+                @Override
+                public void DataIsDeleted() {
+
+                }
+            });
+
         }
         if(waitingDialog.isShowing()) {
             waitingDialog.dismiss();
         }
+
     }
 
     private void ProcessedDataResult(List<FirebaseVisionImageLabel> firebaseVisionImageLabels) {
         for(FirebaseVisionImageLabel label : firebaseVisionImageLabels){
+            Label resultLabel = new Label();
             Toast.makeText(this, "Device result: "+label.getText(), Toast.LENGTH_SHORT).show();
+            resultLabel.setName(label.getText());
+            resultLabel.setConfidence(label.getConfidence());
+            new FirebaseDatabaseHelper().addResult(resultLabel, new FirebaseDatabaseHelper.DataStatus() {
+                @Override
+                public void DataIsLoaded(List<Label> labelList, List<String> keys) {
+
+                }
+
+                @Override
+                public void DataIsInserted() {
+
+                }
+
+                @Override
+                public void DataIsUpated() {
+
+                }
+
+                @Override
+                public void DataIsDeleted() {
+
+                }
+            });
         }
         if(waitingDialog.isShowing()) {
             waitingDialog.dismiss();
