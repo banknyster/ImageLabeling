@@ -46,7 +46,7 @@ public class ResultListActivity extends AppCompatActivity {
             }
         });
     }
-
+/*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.result_activity_menu2,menu);
@@ -62,5 +62,5 @@ public class ResultListActivity extends AppCompatActivity {
                 startActivity(new Intent(this,LoginActivity.class)); return true;
         }
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 }
