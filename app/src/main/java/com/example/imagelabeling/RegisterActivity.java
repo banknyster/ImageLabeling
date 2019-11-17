@@ -62,7 +62,9 @@ public class RegisterActivity extends AppCompatActivity {
                                 Toast.makeText(RegisterActivity.this, "Sign up unsuccessful, please try again", Toast.LENGTH_SHORT).show();
                             }
                             else{
-                                startActivity(new Intent(RegisterActivity.this,MainActivity.class));
+                                LoginActivity login = new LoginActivity();
+                                login.setIsLogin(true);
+                                startActivity(new Intent(RegisterActivity.this,SecondActivity.class));
                             }
                         }
                     });

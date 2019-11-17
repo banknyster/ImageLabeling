@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,6 +21,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText emailID,passwordID;
     Button signIn;
     TextView tvSignUp;
+    private boolean isLogin = false;
 
     private FirebaseAuth.AuthStateListener authStateListener;
     FirebaseAuth mFirebaseAuth;
@@ -45,8 +45,9 @@ public class LoginActivity extends AppCompatActivity {
                 FirebaseUser mFirebaseUser = mFirebaseAuth.getCurrentUser();
 
                 if(mFirebaseUser != null){
+                    isLogin = true;
                     Toast.makeText(LoginActivity.this,"You are logged in",Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(LoginActivity.this,MainActivity.class);
+                    Intent i = new Intent(LoginActivity.this,SecondActivity.class);
                     startActivity(i);
                 }
                 else {
@@ -80,7 +81,8 @@ public class LoginActivity extends AppCompatActivity {
                                 Toast.makeText(LoginActivity.this, "Login failed, please try again", Toast.LENGTH_SHORT).show();
                             }
                             else {
-                                Intent i = new Intent(LoginActivity.this,MainActivity.class);
+                                isLogin = true;
+                                Intent i = new Intent(LoginActivity.this,SecondActivity.class);
                                 startActivity(i);
                             }
                         }
@@ -107,5 +109,11 @@ public class LoginActivity extends AppCompatActivity {
     protected void onStart(){
         super.onStart();
         mFirebaseAuth.addAuthStateListener(authStateListener);
+    }
+    public void setIsLogin(boolean logedin){
+        this.isLogin = logedin;
+    }
+    public boolean getIsLogin(){
+        return this.isLogin;
     }
 }

@@ -38,8 +38,7 @@ import java.util.List;
 
 import dmax.dialog.SpotsDialog;
 
-public class MainActivity extends AppCompatActivity {
-
+public class SecondActivity extends AppCompatActivity {
     CameraView cameraView;
 
     Button btnDetect;
@@ -65,10 +64,10 @@ public class MainActivity extends AppCompatActivity {
         btnDetect = (Button)findViewById(R.id.btn_detect);
 
         waitingDialog = new SpotsDialog.Builder()
-                            .setContext(this)
-                            .setMessage("Please wait")
-                            .setCancelable(false)
-                            .build();
+                .setContext(this)
+                .setMessage("Please wait")
+                .setCancelable(false)
+                .build();
 
         cameraView.addCameraKitListener(new CameraKitEventListener(){
             @Override
@@ -119,21 +118,21 @@ public class MainActivity extends AppCompatActivity {
                 if(internet){
 
                     FirebaseVisionCloudImageLabelerOptions options = new FirebaseVisionCloudImageLabelerOptions.Builder()
-                              .setConfidenceThreshold(0.8f)
-                              .build();
+                            .setConfidenceThreshold(0.8f)
+                            .build();
                     FirebaseVisionImageLabeler detector = FirebaseVision.getInstance()
-                               .getCloudImageLabeler(options);
+                            .getCloudImageLabeler(options);
 
                     detector.processImage(image)
                             .addOnSuccessListener(new OnSuccessListener<List<FirebaseVisionImageLabel>>() {
-                        @Override
-                        public void onSuccess(List< FirebaseVisionImageLabel > firebaseVisionCloudLabels) {
-                            ProcessedDataResultCloud(firebaseVisionCloudLabels);
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onSuccess(List< FirebaseVisionImageLabel > firebaseVisionCloudLabels) {
+                                    ProcessedDataResultCloud(firebaseVisionCloudLabels);
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                           Log.d("ERROR",e.getMessage());
+                            Log.d("ERROR",e.getMessage());
                         }
                     });
                 }
@@ -147,11 +146,11 @@ public class MainActivity extends AppCompatActivity {
 
                     detector.processImage(image)
                             .addOnSuccessListener(new OnSuccessListener<List<FirebaseVisionImageLabel>>() {
-                        @Override
-                        public void onSuccess(List < FirebaseVisionImageLabel > firebaseVisionImageLabels) {
-                            ProcessedDataResult(firebaseVisionImageLabels);
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onSuccess(List < FirebaseVisionImageLabel > firebaseVisionImageLabels) {
+                                    ProcessedDataResult(firebaseVisionImageLabels);
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             Log.d("ERROR",e.getMessage());
@@ -235,15 +234,23 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-            getMenuInflater().inflate(R.menu.result_activity_menu,menu);
-            return super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.result_activity_menu2,menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
-            case R.id.login:{
-                startActivity(new Intent(this,LoginActivity.class)); return true;}
+
+            case R.id.history:{
+                startActivity(new Intent(this,ResultListActivity.class));
+                return true;}
+            case R.id.logout:{
+                firebaseAuth = FirebaseAuth.getInstance();
+                firebaseAuth.signOut();
+                finish();
+                startActivity(new Intent(this,MainActivity.class));
+                return true;}
         }
         return super.onOptionsItemSelected(item);
     }
