@@ -21,6 +21,8 @@ public class ResultListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result_list);
+
+
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerviewResult);
         new FirebaseDatabaseHelper().getLabel(new FirebaseDatabaseHelper.DataStatus() {
             @Override
@@ -47,7 +49,7 @@ public class ResultListActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.result_activity_menu,menu);
+        getMenuInflater().inflate(R.menu.result_activity_menu2,menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -56,7 +58,7 @@ public class ResultListActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.history:
                 startActivity(new Intent(this,ResultListActivity.class)); return true;
-            case R.id.login:
+            case R.id.logout:
                 startActivity(new Intent(this,LoginActivity.class)); return true;
         }
         return super.onOptionsItemSelected(item);

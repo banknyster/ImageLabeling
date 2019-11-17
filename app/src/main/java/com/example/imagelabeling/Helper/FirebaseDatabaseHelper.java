@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FirebaseDatabaseHelper {
+
     private FirebaseDatabase mDatabase;
     private static DatabaseReference mReferenceResult;
     private static DatabaseReference mReferenceRoot;

@@ -47,7 +47,6 @@ public class RecyclerviewConfig {
             this.key=key;
         }
 
-
     }
 
     class ResultAdapter extends RecyclerView.Adapter<ResultItemView>{
