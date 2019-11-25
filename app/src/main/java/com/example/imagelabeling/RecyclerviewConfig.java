@@ -43,7 +43,7 @@ public class RecyclerviewConfig {
 
         public void bind(Label label, String key){
             mName.setText(label.getName());
-            mConfidence.setText((int) label.getConfidence());
+            mConfidence.setText(label.getConfidence());
             this.key=key;
         }
 

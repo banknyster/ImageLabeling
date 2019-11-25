@@ -20,8 +20,8 @@ public class Label {
         this.name = name;
     }
 
-    public double getConfidence() {
-        return confidence;
+    public String getConfidence() {
+        return confidence+"";
     }
 
     public void setConfidence(double confidence) {
