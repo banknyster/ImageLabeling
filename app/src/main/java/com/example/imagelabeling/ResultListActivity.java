@@ -46,21 +46,5 @@ public class ResultListActivity extends AppCompatActivity {
             }
         });
     }
-/*
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.result_activity_menu2,menu);
-        return super.onCreateOptionsMenu(menu);
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.history:
-                startActivity(new Intent(this,ResultListActivity.class)); return true;
-            case R.id.logout:
-                startActivity(new Intent(this,LoginActivity.class)); return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }*/
 }

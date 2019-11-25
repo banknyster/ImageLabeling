@@ -20,11 +20,10 @@ public class Label {
         this.name = name;
     }
 
-    public String getConfidence() {
-        return confidence+"";
-    }
-
     public void setConfidence(double confidence) {
         this.confidence = confidence;
+    }
+    public String getConfidence() {
+        return confidence+"";
     }
 }
