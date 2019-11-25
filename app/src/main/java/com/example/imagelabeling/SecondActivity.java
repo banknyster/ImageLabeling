@@ -1,6 +1,7 @@
 package com.example.imagelabeling;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
@@ -59,6 +60,7 @@ public class SecondActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         cameraView = (CameraView) findViewById(R.id.camera_view);
         btnDetect = (Button)findViewById(R.id.btn_detect);
