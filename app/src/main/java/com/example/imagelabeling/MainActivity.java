@@ -168,30 +168,7 @@ public class MainActivity extends AppCompatActivity {
         for(FirebaseVisionImageLabel label : firebaseVisionCloudLabels){
             Label resultLabel = new Label();
             Toast.makeText(this, "Cloud result: "+label.getText() + " confidence: " + label.getConfidence(), Toast.LENGTH_SHORT).show();
-            resultLabel.setName(label.getText());
-            resultLabel.setConfidence(label.getConfidence());
 
-            new FirebaseDatabaseHelper().addResult(resultLabel, new FirebaseDatabaseHelper.DataStatus() {
-                @Override
-                public void DataIsLoaded(List<Label> labelList, List<String> keys) {
-
-                }
-
-                @Override
-                public void DataIsInserted() {
-
-                }
-
-                @Override
-                public void DataIsUpated() {
-
-                }
-
-                @Override
-                public void DataIsDeleted() {
-
-                }
-            });
 
         }
         if(waitingDialog.isShowing()) {
@@ -204,29 +181,7 @@ public class MainActivity extends AppCompatActivity {
         for(FirebaseVisionImageLabel label : firebaseVisionImageLabels){
             Label resultLabel = new Label();
             Toast.makeText(this, "Device result: "+label.getText(), Toast.LENGTH_SHORT).show();
-            resultLabel.setName(label.getText());
-            resultLabel.setConfidence(label.getConfidence());
-            new FirebaseDatabaseHelper().addResult(resultLabel, new FirebaseDatabaseHelper.DataStatus() {
-                @Override
-                public void DataIsLoaded(List<Label> labelList, List<String> keys) {
 
-                }
-
-                @Override
-                public void DataIsInserted() {
-
-                }
-
-                @Override
-                public void DataIsUpated() {
-
-                }
-
-                @Override
-                public void DataIsDeleted() {
-
-                }
-            });
         }
         if(waitingDialog.isShowing()) {
             waitingDialog.dismiss();

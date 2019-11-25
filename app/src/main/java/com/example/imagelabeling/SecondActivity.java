@@ -168,7 +168,7 @@ public class SecondActivity extends AppCompatActivity {
             Label resultLabel = new Label();
             Toast.makeText(this, "Cloud result: "+label.getText() + " confidence: " + label.getConfidence(), Toast.LENGTH_SHORT).show();
             resultLabel.setName(label.getText());
-            resultLabel.setConfidence(label.getConfidence());
+            resultLabel.setConfidence(label.getConfidence()+"");
 
             new FirebaseDatabaseHelper().addResult(resultLabel, new FirebaseDatabaseHelper.DataStatus() {
                 @Override
@@ -204,7 +204,7 @@ public class SecondActivity extends AppCompatActivity {
             Label resultLabel = new Label();
             Toast.makeText(this, "Device result: "+label.getText(), Toast.LENGTH_SHORT).show();
             resultLabel.setName(label.getText());
-            resultLabel.setConfidence(label.getConfidence());
+            resultLabel.setConfidence(label.getConfidence()+"");
             new FirebaseDatabaseHelper().addResult(resultLabel, new FirebaseDatabaseHelper.DataStatus() {
                 @Override
                 public void DataIsLoaded(List<Label> labelList, List<String> keys) {
