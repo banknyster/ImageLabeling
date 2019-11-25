@@ -20,6 +20,7 @@ public class Label {
         this.name = name;
     }
 
+
     public void setConfidence(double confidence) {
         this.confidence = confidence;
     }
